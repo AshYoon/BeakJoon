@@ -9,7 +9,10 @@ using namespace std;
 
 int main()
 {
-    int n = 0;
+    // BOJ 1436
+    {
+    // BOJ 1436번 문제 
+   /* int n = 0;
    long long startnumber = 666;
    int targetnumber ;
    int cnt = 0;
@@ -47,8 +50,22 @@ int main()
 
 
    }
+   */
+    }
 
-   return 0;
+
+    // BOJ 2839
+    // n 킬로의 설탕 배달 , 3킬로 패키지 , 5키로 패키지 두종류 사용가능
+    // 가능한 적은수 패키지를 가져간다 , n 킬로를 정확히 운송하는 최소한의 패키지 수 
+    // 입력값 n 은 3 <=  N <= 5000
+    // n 킬로를 정확이 운송할수없다면 -1 return 
+
+    
+
+
+
+
+
 
 
 }
