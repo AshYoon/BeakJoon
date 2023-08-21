@@ -16,22 +16,6 @@ int check(vector<int> v , int n)
     return cnt;
 }
 
-int solution(int a, int b, int c, int d) {
-    int answer = 0;
-    vector <int> numbers = { a , b ,c ,d };
-    sort(numbers.begin() , numbers.end());
-    
-    if( numbers[0] == numbers[3]) answer = 1111* numbers[0]; // 4개 숫자가 모두같음 
-    else if( numbers[0] == numbers[1] && numbers[2] == numbers[3]) answer = (numbers[0] + numbers[2]) * abs(numbers[0] - numbers[2]); // 3개의 숫자가 같음 
-    else if( numbers[1] == numbers[2] && (numbers[0] == numbers[1] || numbers[2] == numbers[3])) answer = pow(10*numbers[1] + (numbers[0] != numbers[1] ? numbers[0] : numbers[3]) ,2);
-    else if( numbers[0] != numbers[1] && numbers[1] != numbers[2] && numbers[2] != numbers[3] ) answer = numbers[0]; // 모두 다른 숫자일때 
-    else
-    {
-        answer = numbers[0] == numbers[1] ? numbers[2] * numbers[3] : (numbers[1] == numbers[2] ? numbers[0] * numbers[3] : numbers[0] * numbers[1]);
-    }
-    
-    return answer;
-}
 //vscode test
 int N;
 int main()
@@ -100,14 +84,36 @@ int main()
 	// }
 	// cout << -1 << endl;
     }
+//programmers 주사위 게임 3 
 
-    //programmers 주사위 게임 3 
-
-    // a == b ==c ==d -> 1111* p 
+{
+// a == b ==c ==d -> 1111* p 
 // a == b == c -> (10 * p + q ) sprt 
 // a == b , c ==d -> ( a + c ) * | a -c | 
 // a == b , q r ->q * r 
 // a != b != c != d -> 가장 작은수 
+// int solution(int a, int b, int c, int d) {
+//     int answer = 0;
+//     vector <int> numbers = { a , b ,c ,d };
+//     sort(numbers.begin() , numbers.end());
+    
+//     if( numbers[0] == numbers[3]) answer = 1111* numbers[0]; // 4개 숫자가 모두같음 
+//     else if( numbers[0] == numbers[1] && numbers[2] == numbers[3]) answer = (numbers[0] + numbers[2]) * abs(numbers[0] - numbers[2]); // 3개의 숫자가 같음 
+//     else if( numbers[1] == numbers[2] && (numbers[0] == numbers[1] || numbers[2] == numbers[3])) answer = pow(10*numbers[1] + (numbers[0] != numbers[1] ? numbers[0] : numbers[3]) ,2);
+//     else if( numbers[0] != numbers[1] && numbers[1] != numbers[2] && numbers[2] != numbers[3] ) answer = numbers[0]; // 모두 다른 숫자일때 
+//     else
+//     {
+//         answer = numbers[0] == numbers[1] ? numbers[2] * numbers[3] : (numbers[1] == numbers[2] ? numbers[0] * numbers[3] : numbers[0] * numbers[1]);
+//     }
+    
+//     return answer;
+// }
+
+}
+ 
+ 
+
+
 
 
 
