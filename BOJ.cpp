@@ -112,6 +112,36 @@ int main()
 }
  
  
+// BOJ 1931 회의실 배정
+// 시작 시간보다 종료시간이 더 중요하게 작용한다 
+// vector에 회의 스케줄을 저장하고 각각 스케줄 종료시점에 대해 정렬 ( 종료시점에 대해서만 정렬) 
+// time 변수를 활용해서 각각 회의를 저장하고 종료시점이 가장빠른 걸로 초기화 
+	int N, end, begin;
+
+	vector<pair<int, int>> schedule;
+
+	cin >> N ;
+
+	for (int i = 0; i < N; i++)
+	{
+		cin >> begin >> end;
+		schedule.push_back(make_pair(end, begin));
+	}
+	
+	sort(schedule.begin(), schedule.end());
+	
+	int time = schedule[0].first;
+	int count = 1;
+	for (int i = 1 ;i < N; i++) 
+	{
+		if (time <= schedule[i].second )
+		{
+			count++;
+			time = schedule[i].first;
+		}
+	}
+
+	cout << count;
 
 
 
