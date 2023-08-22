@@ -1,6 +1,9 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <queue>
+#include <unordered_map>
+#include <map>
 #include <vector>
 #include <cmath>
 
@@ -17,7 +20,7 @@ int check(vector<int> v , int n)
 }
 
 //vscode test
-int N;
+
 int main()
 {
     // BOJ 1436
@@ -116,32 +119,87 @@ int main()
 // 시작 시간보다 종료시간이 더 중요하게 작용한다 
 // vector에 회의 스케줄을 저장하고 각각 스케줄 종료시점에 대해 정렬 ( 종료시점에 대해서만 정렬) 
 // time 변수를 활용해서 각각 회의를 저장하고 종료시점이 가장빠른 걸로 초기화 
-	int N, end, begin;
-
-	vector<pair<int, int>> schedule;
-
-	cin >> N ;
-
-	for (int i = 0; i < N; i++)
 	{
-		cin >> begin >> end;
-		schedule.push_back(make_pair(end, begin));
-	}
-	
-	sort(schedule.begin(), schedule.end());
-	
-	int time = schedule[0].first;
-	int count = 1;
-	for (int i = 1 ;i < N; i++) 
-	{
-		if (time <= schedule[i].second )
-		{
-			count++;
-			time = schedule[i].first;
-		}
-	}
+    // int N, end, begin;
 
-	cout << count;
+	// vector<pair<int, int>> schedule;
+
+	// cin >> N ;
+
+	// for (int i = 0; i < N; i++)
+	// {
+	// 	cin >> begin >> end;
+	// 	schedule.push_back(make_pair(end, begin)); // end begin pair 로 저장하는것까진 ok 
+	// }
+	
+	// sort(schedule.begin(), schedule.end());
+	
+	// int time = schedule[0].first; // time 변수 활용 생각못함 
+	// int count = 1;
+	// for (int i = 1 ;i < N; i++) 
+	// {
+	// 	if (time <= schedule[i].second )
+	// 	{
+	// 		count++; // 아예 count 로 return 
+	// 		time = schedule[i].first;
+	// 	}
+	// }
+
+	// cout << count;
+    }
+
+
+    //BOJ 11399
+    //인하은행에 ATM은 1대 - N 명의 사람이 줄을 서있다 , 1번부터 N 번까지 번호가메겨진 사람들이 줄서있고 
+    // i 번 째 사람이 돈을 인출하는데 걸리는 시간은 P_i분 
+    // 줄을 서는 순서에 따라 돈을 인출하는데 필요한 시간으이 합이 달라진다 
+    // 총 5명이 있고 p1 =3 , p2 = 1 , p3 = 4 , p4 = 3 ,p5 = 2 
+    // 1, ,2 ,3 ,4,5 순으로 줄을 선다면 1번은 3분만에 돈을 뽑을수있고 2번은 1번이 뽑을때까지 기다려야하므로 3 + 1 분 총 4분이걸림 
+    // 줄을 서있는 사람의 수 N 과 돈을 인출하는데 걸리는 시간 Pi 가 주어질때 각 사람이 인출하는데 필요한 시간의 합의 최솟값
+    {
+    // int N , P_i;
+    // vector <pair<int,int>> times;
+    // cin >> N;
+    // for(int i = 0 ; i < N ; i++) 
+    // {
+    //     cin>>P_i;
+    //     times.push_back({P_i ,i});
+    // }
+    // int total = 0;
+    // sort(times.begin(),times.end());
+    // for(auto n : times) cout << n.first << " , " << n.second << endl;
+
+    // vector <int> numbers;
+    // int beforenumber = 0;
+
+
+    // for(int i = 0 ; i < times.size(); i++)
+    // {
+    //     if(beforenumber == 0)
+    //     {
+    //         numbers.push_back(times[i].first);
+    //         beforenumber = times[i].first;
+    //         continue;
+    //     }
+    //     else
+    //     {
+    //         numbers.push_back(times[i].first + beforenumber);
+    //         beforenumber += times[i].first;
+    //     }
+        
+
+
+    // }
+    // for(auto n : numbers) total += n;
+    // cout << total;
+    // return 0;
+    }
+
+     
+     //
+
+
+
 
 
 
