@@ -7,6 +7,7 @@
 #include <vector>
 #include <cmath>
 #include <sstream>
+#include <climits>
 
 using namespace std;
 int check(vector<int> v , int n)
@@ -19,6 +20,25 @@ int check(vector<int> v , int n)
     
     return cnt;
 }
+
+// BOJ 13305 greedy 주유소 함수 
+    int cost[100001] , dist[100001];
+long long solve(int n)
+{
+    int MinCost = INT_MAX; // int max 로 mincost 초기화 
+    long long dist_sum = 0; // -> 지나온거리 * 주유소 비용 = > 총 비용 
+
+    for(int i = 1; i<n;i++)
+    {
+        if(cost[i] < MinCost) MinCost = cost[i]; // 만약 cost[i] 가 mincost 보다 낮다면 MinCost 교체 
+        dist_sum += (long long)MinCost * (long long)dist[i]; // long long 으로 변환해서 비용 추가 
+    }
+
+    return dist_sum;  // 총 비용 return 
+
+}
+
+
 
 //vscode test
 
@@ -205,42 +225,81 @@ int main()
      // 수는 0으로 시작가능 , 입력으로 주어지는 식의 길이는 50보다 작거나 같음 -> for문을 2개이상 사용가능 
      // 기본적인 알고리즘 ->  ' - ' 뒤에 나오는 식을 전부 뺄셈 처리하면 식의 최솟값이 나온다 
      // isMinus 변수를 활용해보자 
-     string input ;
-     cin >> input;
-
-     string num;
-     bool isMinus = false;
-     int answer = 0;
-
-     for( int i = 0 ; i <= input.size() ;i++)
      {
-        if(input[i] == '-' || input[i] == '+' || i == input.size()) // ?? i == input.size()는 무슨 예외처리 ?
-        {
-            if(isMinus) 
-            {
-                answer -= stoi(num);
-                num = "";
+    //  string input ;
+    //  cin >> input;
 
-            }
-            else 
-            {
-                answer += stoi(num);
-                num = "";
-            }
+    //  string num;
+    //  bool isMinus = false;
+    //  int answer = 0;
+
+    //  for( int i = 0 ; i <= input.size() ;i++)
+    //  {
+    //     if(input[i] == '-' || input[i] == '+' || i == input.size()) // ?? i == input.size()는 무슨 예외처리 ?
+    //     {
+    //         if(isMinus) 
+    //         {
+    //             answer -= stoi(num);
+    //             num = "";
+
+    //         }
+    //         else 
+    //         {
+    //             answer += stoi(num);
+    //             num = "";
+    //         }
             
-        }
-        else
-        {
-            num += input[i];
-        }
+    //     }
+    //     else
+    //     {
+    //         num += input[i];
+    //     }
 
-        if( input[i] == '-')
-        {
-            isMinus = true;
-        }
+    //     if( input[i] == '-')
+    //     {
+    //         isMinus = true;
+    //     }
+    //  }
+    //  cout << answer;
      }
-     cout << answer;
 
+
+
+    //  BOJ 13305 주유소 greedy 
+    //N 개의 도시 , 제일 왼쪽도시에서 제일 오른쪽도시로 자동차를 이용해서 이동 
+    // 인접한 두 도시 사이의 도로들은 길이가 다를수있음 
+    // 도로길이의 단위는 km 
+    // 처음 출발할때 기름을 넣어야함 , 기름통 크기는 무제한 , 
+    // 1km 마다 1 리터의 기름을 사용 도시마다 리터당 가격은 다를수있고 가격단위는 " 원 " 
+    // 각 도시의 주유소 기름가격과 각 도시를 연결하는 도로의 길이를 입력으로 받아 
+    // 젤 왼쪽에서 오른쪽으로 가는 최소 비용을 계산 
+    // 도시개수 N 은 2 <= N <= 100,000 , 도로의 개수 N -1 개 
+    // 제일 왼쪽부터 오른쪽도시까지의 거리는 1 이상 1,000,000,000 이하 의 자연수 
+    // 리터 당 가격도 10억 이하 자연수 
+    // 최소 주유비를 위해선 지나간 주유소 중에 가장 싼 주유소를 택해야한다 
+    // 즉 주유소 A B C 가 있다면 주유비가 A > C > B 순으로 비싸다면 
+    // B 에서 C 에서 필요한만큼 주유를 해야한다는뜻이다  굳이 C에서 주유를 할 필요가없다는것 
+    // 선형 travers 로 풀수있다 , greedy를 풀때 가장 간단하게 풀수있는건지 먼저 확인하기 
+
+
+
+    int n ;
+    cin >> n;
+    for(int i = 1 ; i < n ; i++) cin >> dist[i];
+    for( int i = 1 ; i <= n; i++) cin >> cost[i]; 
+    cout << solve(n);
+
+    return 0;
+
+
+    
+
+
+
+
+
+
+    
      
      
 
