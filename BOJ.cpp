@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <cmath>
+#include <sstream>
 
 using namespace std;
 int check(vector<int> v , int n)
@@ -68,7 +69,7 @@ int main()
     }
 
 
-    // BOJ 2839
+    // BOJ 2839 greedy 
     {
     // n 킬로의 설탕 배달 , 3킬로 패키지 , 5키로 패키지 두종류 사용가능
     // 가능한 적은수 패키지를 가져간다 , n 킬로를 정확히 운송하는 최소한의 패키지 수 
@@ -115,7 +116,7 @@ int main()
 }
  
  
-// BOJ 1931 회의실 배정
+// BOJ 1931 회의실 배정 greedy
 // 시작 시간보다 종료시간이 더 중요하게 작용한다 
 // vector에 회의 스케줄을 저장하고 각각 스케줄 종료시점에 대해 정렬 ( 종료시점에 대해서만 정렬) 
 // time 변수를 활용해서 각각 회의를 저장하고 종료시점이 가장빠른 걸로 초기화 
@@ -194,10 +195,54 @@ int main()
     // cout << total;
     // return 0;
     }
+     // greedy 
+     
+     //1541 잃어버린 경로
+     // 양수와 + , - , 그리고 괄호로 식을 만들었다가 괄호를 모두 지웠다 
+     // 그리고 괄호를 적절히 쳐서 이 식의 값을 최소로 만들려고한다 
+     // 최소로 만드는 프로그램 작성 
+     //식은 0 ~ 9 , + , - 만으로 이루어져있고 처음과 마지막은 숫자 , 연속해서 2개의 연산자 x , 5자리보다 많이 연속되는 숫자는 없다 
+     // 수는 0으로 시작가능 , 입력으로 주어지는 식의 길이는 50보다 작거나 같음 -> for문을 2개이상 사용가능 
+     // 기본적인 알고리즘 ->  ' - ' 뒤에 나오는 식을 전부 뺄셈 처리하면 식의 최솟값이 나온다 
+     // isMinus 변수를 활용해보자 
+     string input ;
+     cin >> input;
+
+     string num;
+     bool isMinus = false;
+     int answer = 0;
+
+     for( int i = 0 ; i <= input.size() ;i++)
+     {
+        if(input[i] == '-' || input[i] == '+' || i == input.size()) // ?? i == input.size()는 무슨 예외처리 ?
+        {
+            if(isMinus) 
+            {
+                answer -= stoi(num);
+                num = "";
+
+            }
+            else 
+            {
+                answer += stoi(num);
+                num = "";
+            }
+            
+        }
+        else
+        {
+            num += input[i];
+        }
+
+        if( input[i] == '-')
+        {
+            isMinus = true;
+        }
+     }
+     cout << answer;
 
      
-     //
-
+     
 
 
 
