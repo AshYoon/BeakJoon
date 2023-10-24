@@ -262,32 +262,141 @@ int main()
     //  }
     //  cout << answer;
      }
+    
+    // programers lv2 그리디 조이스틱 
+    {
+        /*
+        #include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+// askii A = 65 , Z = 90 
 
 
+int solution(string name) {
+    int answer = 0;
+    string clone(name.size() , 'A');
+    
+    
+    vector <int> Move(name.size() , 0);
+    int n= name.size();
+    
+    int turn = n-1; //한번에 움직일수있는 최대거리 
+    
+    
+    int temp = 0;
+    
+    for(int i = 0 ; i< Move.size() ; i++)
+    {
+        temp = 91 - name[i]; // A에서 한번움직여야하니깐 
+        if(temp > 13 )Move[i] = name[i] - clone[i]; 
+        else if( temp <= 13) Move[i] = 91 - name[i] ;
+        answer+= Move[i];
+        
 
-    //  BOJ 13305 주유소 greedy 
-    //N 개의 도시 , 제일 왼쪽도시에서 제일 오른쪽도시로 자동차를 이용해서 이동 
-    // 인접한 두 도시 사이의 도로들은 길이가 다를수있음 
-    // 도로길이의 단위는 km 
-    // 처음 출발할때 기름을 넣어야함 , 기름통 크기는 무제한 , 
-    // 1km 마다 1 리터의 기름을 사용 도시마다 리터당 가격은 다를수있고 가격단위는 " 원 " 
-    // 각 도시의 주유소 기름가격과 각 도시를 연결하는 도로의 길이를 입력으로 받아 
-    // 젤 왼쪽에서 오른쪽으로 가는 최소 비용을 계산 
-    // 도시개수 N 은 2 <= N <= 100,000 , 도로의 개수 N -1 개 
-    // 제일 왼쪽부터 오른쪽도시까지의 거리는 1 이상 1,000,000,000 이하 의 자연수 
-    // 리터 당 가격도 10억 이하 자연수 
-    // 최소 주유비를 위해선 지나간 주유소 중에 가장 싼 주유소를 택해야한다 
-    // 즉 주유소 A B C 가 있다면 주유비가 A > C > B 순으로 비싸다면 
-    // B 에서 C 에서 필요한만큼 주유를 해야한다는뜻이다  굳이 C에서 주유를 할 필요가없다는것 
-    // 선형 travers 로 풀수있다 , greedy를 풀때 가장 간단하게 풀수있는건지 먼저 확인하기 
+        int ind = i + 1;
+        while ( ind < n && name[ind] == 'A') ind++;
+        
+        turn = min(turn , i + n - ind + min( i , n - ind));
+        
+        
+    
+    }
+    answer += turn;
+    
+
+    
+    
+    
+    
+    return answer;
+}
+        */
+    }
 
 
+    //programmers lv 1 그리디 체육복 
+     {
+        /*
+        #include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+//  n 번은 n-1 or n + 1 한테만 빌려줄수있음 
+//최대한 많은 학생이 들어야함 , 체육복없는번호 lost , 전체학생수  n , 여벌체육복 reserve
+// 전체 학생 2이상 30 이하 , 도난당한 학생은 1이상 n이하 , 중복 x 
+// 
 
-    int n ;
-    cin >> n;
-    for(int i = 1 ; i < n ; i++) cin >> dist[i];
-    for( int i = 1 ; i <= n; i++) cin >> cost[i]; 
-    cout << solve(n);
+
+int solution(int n, vector<int> lost, vector<int> reserve) {
+    int answer = 0;
+    int give1 ;
+    int give2 ;
+    
+    vector<int> student(n,1);
+    
+    for(int i = 0 ; i < reserve.size() ; i++)
+    student[reserve[i]-1] += 1; //index직접접근이니깐 -1 씩 
+    
+    for(int j = 0 ; j < lost.size() ; j++)
+    student[lost[j]-1] -=1;
+    
+    for(int l = 0 ; l < student.size() ; l++)
+    { 
+        if(student[l] > 1)
+        {
+            if(student[l-1] == 0 && l != 0)
+            {
+                student[l] -=1;
+
+                student[l-1] +=1;
+            }
+            else if(student[l+1] ==0 && l+ 1 < student.size())
+            {
+                student[l] -=1;
+
+                student[l+1] +=1;
+            }
+        }
+
+
+    }
+    for(auto k : student)
+    {
+        if( k >= 1) answer++;
+    }
+
+
+    
+    
+    return answer;
+}
+        */
+    }
+    
+    
+    // 알고리즘 수업 DFS 
+    // BOJ 실버 2 24479
+    /* N 개의 정점과 M 개의 간선 의 무방향 그래프 , 1번ㄱ부터 N 번까지 , 모든간선 가중치는 1
+    정점 R 에서 시작해서 깊이 우선 탐색으로 노드를 방문 , 노드 방문 순서출력 
+    인접 접점 은 오름차순 
+    dfs ( V ,E ,R) { # V: 정점 집합 , E: 간선집합 , R : 시작접점 
+             visited[R] <- Yes
+                for each x 가 E(R) 에 보함 , 즉 정점 R의 인접정접의 집함 
+                if ( visitied [x] = No ) then (V, E ,x) ; }*/
+ /* 첫쨰줄에 정점의수 N  ( 5 <= N <= 100,000) , 간선의 수 M ( 1<= M <= 200,000) , 시작정점 R ( 1 <= R <= N)
+  첫째 줄부터 N 개의 줄에 정수를 한개씩 출력 , i 번째 줄에는 정점 i 의 방문순서 출력 시작정점 방문순서는 1 
+  시작 정점에서 방문할수없는경우 0 을 출력 */
+
+  
+
+    
+
+
+   
 
     return 0;
 
