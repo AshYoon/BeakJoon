@@ -82,14 +82,14 @@ using namespace std;
 //     map<string, int> m2;
 //     for(int i=0;i<players.size();i++)
 //     {
-//         m1[i] = players[i];
-//         m2[players[i]] = i;
+//         m1[i] = players[i]; // 등수 , 이름 
+//         m2[players[i]] = i; // 이름 , 등수 
 //     }
 //     for(int i=0;i<callings.size();i++)
 //     {
-//         int cur_idx = m2[callings[i]];//호출 선수 이름, 순위
-//         string change = m1[cur_idx - 1];//앞선 선수 이름, 순위
-//         m1[cur_idx - 1] = callings[i];
+//         int cur_idx = m2[callings[i]];//호출 |  선수 이름, 순위 / 순위를 알아냄 
+//         string change = m1[cur_idx - 1];//앞선  선수 이름, 순위 / 바꿀 선수 순위 
+//         m1[cur_idx - 1] = callings[i]; // swap 과정 
 //         m1[cur_idx] = change;
 //         m2[callings[i]] = cur_idx - 1;
 //         m2[change] = cur_idx;
@@ -97,3 +97,70 @@ using namespace std;
 //     for(auto c : m1) answer.push_back(c.second);
 //     return answer;
 // }
+
+
+// 추억 점수 programmers 
+// vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo) {
+//     vector<int> answer;
+//     map<string , int> mymap;
+//     for(int i = 0 ; i < name.size() ; i++)
+//     {
+//         mymap.insert(make_pair(name[i] , yearning[i]));
+//     }
+//     int temp = 0;
+//     for(int i = 0 ; i <photo.size() ; i++)
+//     {
+//         for(int j = 0 ; j < photo[i].size() ; j++)
+//         {
+//             temp += mymap[photo[i][j]];
+//         }
+//         answer.push_back(temp);
+//         temp = 0;
+//     }
+    
+//     return answer;
+// }
+
+
+int main()
+{
+    // std::map<std::string , int> mymap;
+    
+    // mymap.insert(std::make_pair("mike1",24));
+    // mymap.insert(std::make_pair("mike2",21));
+    // mymap.insert(std::make_pair("mike3",20));
+    // mymap.insert(std::make_pair("mike4",33));
+    // mymap.insert(std::make_pair("mike10",44));
+    // std::cout << mymap["mike1"] << endl;
+    // 인덱스 접근
+    //std::pair<std::map<std::string,int>::iterator , bool > res = mymap.insert(std::make_pair("mike105",99));
+    // res리턴값으로 나옴 , res를 넘겨주는데 pair임 , 하나는 bool , 하나는 iter /insert 하려면 해당 key값이없어야한다 (mike105) 만약 해당값이없다면 bool 이 true 값으로 
+    // 그냥 넘겨주고 아니라면 bool값이 false 로되고 iterator 가 해당 값의 위치를 알려준다 
+    // if(res.second == true)
+    // {
+    //     cout << "insertion success" << endl;
+    // }else
+    // {
+    //     cout <<"insertion failed : " << (*(res.first)).first << endl;
+    /// }
+    //mymap.erase("mike4");
+    // 해당요소 지우기 
+
+    // for(auto & e : mymap)
+    // {
+    //     std::cout << e.first << " , " << e.second << endl;
+    // }
+
+    // auto pos = mymap.find("mike3"); // iter반환 
+
+    // if(pos == mymap.end())
+    // {
+    //     cout << " fail to find" << endl;
+    // }
+    // else{
+    //     cout << (*pos).first << " , " << (*pos).second <<endl;
+    // }
+
+    return 0;
+
+}
