@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <map>
+#include <stack>
 #include <algorithm>
 using namespace std;
 // 전국 선발 고사 
@@ -120,6 +121,30 @@ using namespace std;
     
 //     return answer;
 // }
+
+
+// 햄버거 만들기 ( stack ) 
+// int solution(vector<int> ingredient) {
+//     int answer = 0;
+//     vector<int> burger = {-1};
+//     for(int n : ingredient)
+//     {
+        
+//         if(burger.back() == 1 && n == 2) burger.back() = 12;
+//         else if(burger.back() == 12 && n == 3 ) burger.back() = 123;
+//         else if(burger.back() == 123 && n == 1) burger.pop_back() , answer++;
+//         else
+//             burger.push_back(n);
+//     }
+    
+    
+//     return answer;
+// }
+
+
+
+
+
 
 
 int main()
