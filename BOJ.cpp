@@ -39,6 +39,25 @@ long long solve(int n)
 }
 
 
+        int n ;
+        int max_happy = 0;
+        vector<int> health;
+        vector<int> happy;
+void solve(int idx , int strong , int pleasure)
+{
+    if(strong <= 0 || idx >= n)
+    {
+        if(max_happy < pleasure)
+        {
+            max_happy = pleasure;
+        }
+        return;
+    }
+
+    solve(idx+1,strong-health[idx] , pleasure + happy[idx]);
+    solve(idx+1,strong , pleasure);
+
+}
 
 //vscode test
 
@@ -391,6 +410,32 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
   첫째 줄부터 N 개의 줄에 정수를 한개씩 출력 , i 번째 줄에는 정점 i 의 방문순서 출력 시작정점 방문순서는 1 
   시작 정점에서 방문할수없는경우 0 을 출력 */
 
+
+
+        cin >> n;
+
+        for(int i = 0 ; i < n ; i++)
+        {
+            int b ;
+            cin >> b;
+            health.push_back(b);
+        }
+
+        for(int i = 0 ; i < n ; i++)
+        {
+            int c;
+            cin >> c;
+            happy.push_back(c);
+        }
+
+        solve(0,99,0);
+        cout << max_happy<<endl;
+
+
+
+
+
+
   
 
     
@@ -399,30 +444,6 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
    
 
     return 0;
-
-
-    
-
-
-
-
-
-
-    
-     
-     
-
-
-
-
-
-
-
-
-
-
-
-    
 
 
 
