@@ -141,11 +141,104 @@ using namespace std;
 //     return answer;
 // }
 
+// 대충 만든 자판
+// vector<int> solution(vector<string> keymap, vector<string> targets) {
+//   vector<int> answer;
+    
+//     for(int i = 0 ; i < targets.size() ; i++)
+//     {
+//         answer.push_back(0);
+//         for(int j = 0 ; j < targets[i].size() ; j++)
+//         {
+//             char c = targets[i][j]; // 타겟문자 
+//             int type = 101 , flag = 1;
+//             // 1 <= keymap의 원소길이 <= 100 이고 , flag 는 타겟문자를 못받았을때를 위한 플래그 
+//             for(int k = 0 ; k < keymap.size() ; k++)
+//             {
+//                 for(int l = 0 ; l < keymap[k].size() ;l++)
+//                 {
+//                     if(keymap[k][l] == c)
+//                     {
+//                         type = min(type, l +1); // 둘중 작은 타입을 저장 
+//                         flag = 0; // 타입 가능한 문자면 false  
+//                         break;
+//                     }
+//                 }
+//             }
+//             if (flag) // if 타입이 한번이라도 이루어지지않았다면 
+//             {
+//                 answer[i] = -1;
+//                 break;
+//             }
+//             answer[i] += type;
+//         }
+        
+//     }
+
+    
+    
+    
+//     return answer;
+// }
+
+//숫자짝궁 ( 해시 ) 
+// string solution(string X, string Y) {
+//     string answer = "";
+    
+//     map<char,int> mX;
+//     map<char,int> mY;
+    
+//     for(auto &c : X) mX[c]++;
+    
+//     for(auto &c : Y) mY[c]++;
+    
+//     for(int i = 0 ; i < X.size() ; i++)
+//     {
+//         if(mY[X[i]] > 0 )
+//         {
+//             answer+= X[i];
+//             mY[X[i]] -=1;
+//         }
+//     }
+    
+//     sort(answer.begin() , answer.end() , greater<>());
+//     if(answer.size() == 0) return answer = "-1";
+//     else if(answer[0] == '0') return answer = "0";
+//     else return answer;
+
+// }
 
 
 
-
-
+//성격 유형 검사하기 ( 2022 kakao tech internship)
+//같은경우 사전순으로 빠른 유형 , askii 작은 게 먼저 와야함 
+// 1 -> N +=3  , 7 -> A+= 3 , 4 - n = | a | ; 
+// 4 - 점수 를 해서 만약 양수면 survey[i][0] += abs|4-점수|;
+// string solution(vector<string> survey, vector<int> choices) {
+//     string answer = "";
+    
+//     map<char,int> mymap;
+//     for(int i = 0 ; i < survey.size() ; i++)
+//     {
+//         int score = 4-choices[i];
+//         if(score > 0)
+//         {
+//             mymap[survey[i][0]] += abs(score);
+//         }
+//         else
+//         {
+//             mymap[survey[i][1]] += abs(score);
+//         }
+//     }
+    
+//     answer += mymap['R'] >= mymap['T'] ? 'R' : 'T';
+//     answer += mymap['C'] >= mymap['F'] ? 'C' : 'F';
+//     answer += mymap['J'] >= mymap['M'] ? 'J' : 'M';
+//     answer += mymap['A'] >= mymap['N'] ? 'A' : 'N';
+    
+    
+//     return answer;
+// }
 
 int main()
 {
