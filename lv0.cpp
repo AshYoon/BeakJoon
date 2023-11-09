@@ -268,6 +268,32 @@ using namespace std;
 //     return answer;
 // }
 
+
+//삼총사 ( 3중 for문 ) 
+//3명이 합쳐서 0 이 되면 3총사 
+// int solution(vector<int> number) {
+//     int answer = 0;
+//     for(int i = 0 ; i < number.size() ; i++)
+//     {
+//         for(int j = i ; j < number.size() ; j++)
+//         {
+//             if(i == j) continue;
+//             for(int k = j ; k < number.size() ; k++)
+//             {
+//                 if( j == k || i == k)
+//                     continue;
+                
+//                 if(number[i] + number[j] + number[k] == 0)
+//                 {
+//                     answer++;
+//                 }
+//             }
+//         }
+//     }
+//     return answer;
+// }
+
+
 int main()
 {
     // std::map<std::string , int> mymap;
@@ -306,6 +332,15 @@ int main()
     // else{
     //     cout << (*pos).first << " , " << (*pos).second <<endl;
     // }
+
+    vector <int> num = {-3, -2, -1, 0, 1, 2, 3};
+
+    cout << solution(num)<<endl;
+    for(auto n : a) cout << n << endl;
+
+
+
+
 
     return 0;
 
