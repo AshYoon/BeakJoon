@@ -240,6 +240,34 @@ using namespace std;
 //     return answer;
 // }
 
+
+//덧칠하기 ( 그리디 )
+//n 미터의 벽 , 1미터씩 n 개로 구역나누고 ,  1번부터  n 번까지 번호
+//롤러의 길이는 m 미터 section은 다시 칠해야하는 구역 
+// 1미터단위 로 n 개의 벽이있다 
+
+
+
+// int solution(int n, int m, vector<int> section) {
+//     int answer = 0;
+    
+//     int cur = 0;
+//     for(int i = 0 ; i < section.size() ; i++)
+//     {
+//         if(cur > section[i])
+//         {
+//             continue;
+//         }
+        
+//         cur = section[i]+ m ;
+//         answer++;
+        
+//     }
+    
+    
+//     return answer;
+// }
+
 int main()
 {
     // std::map<std::string , int> mymap;
