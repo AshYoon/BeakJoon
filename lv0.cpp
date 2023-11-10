@@ -4,6 +4,10 @@
 #include <map>
 #include <stack>
 #include <algorithm>
+#include <sstream>
+#include <set>
+
+
 using namespace std;
 // 전국 선발 고사 
 //0번부터 n-1 번까지 선발고사 , 등수높은 3명선발 ( 참여가능한 )
@@ -293,6 +297,40 @@ using namespace std;
 //     return answer;
 // }
 
+vector<int> solution(vector<string> id_list, vector<string> report, int k) {
+    vector<int> answer;
+    map < string , string> mymap;
+    map<pair<string,string> , int> mysmap;
+
+    vector<pair<string,string>> myreport;
+     map <string , set<string>> reportHash;
+    string temp ;
+
+    for(int i = 0 ; i < report.size() ; i++)
+    {
+        stringstream ss(report[i]);
+        string temp1 ,temp2;
+        ss >> temp1 >> temp2;
+        myreport.push_back(make_pair(temp1,temp2));
+        //reportHash[temp1] = temp2;
+        mysmap[make_pair(temp1,temp2)]+=1;
+    }
+    for(auto m : myreport)
+    cout << m.first << " , " << m.second << endl;
+    
+    
+    for(int i = 0 ; i < myreport.size() ; i++)
+    {
+        mymap[myreport[i].first] = myreport[i].second; 
+    }
+    
+    for(auto m : mymap)
+   // cout << m.first << " , " << m.second << endl;
+
+    
+    return answer;
+}
+
 
 int main()
 {
@@ -332,12 +370,6 @@ int main()
     // else{
     //     cout << (*pos).first << " , " << (*pos).second <<endl;
     // }
-
-    vector <int> num = {-3, -2, -1, 0, 1, 2, 3};
-
-    cout << solution(num)<<endl;
-    for(auto n : a) cout << n << endl;
-
 
 
 
