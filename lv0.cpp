@@ -1,11 +1,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <stack>
 #include <algorithm>
 #include <sstream>
-#include <set>
+#include <unordered_set>
 
 
 using namespace std;
@@ -297,39 +297,39 @@ using namespace std;
 //     return answer;
 // }
 
-vector<int> solution(vector<string> id_list, vector<string> report, int k) {
-    vector<int> answer;
-    map < string , string> mymap;
-    map<pair<string,string> , int> mysmap;
 
-    vector<pair<string,string>> myreport;
-     map <string , set<string>> reportHash;
-    string temp ;
+//신고 결과 받기 
+// 만약 신고되서 정지당하면 처리결과메일 발송 
+// vector<int> solution(vector<string> id_list, vector<string> report, int k) {
+//     unordered_map<string,unordered_set<string>> reportHash;
+//     unordered_map<string,unordered_set<string>> resultHash;
+    
+//     for(string r : report){
+//         int pos = r.find(' '); // 공백찾기
+//         string user = r.substr(0,pos); // 문자열 자르기로 구분 
+//         string bad = r.substr(pos+1);
+//         reportHash[user].insert(bad);
+//         resultHash[bad].insert(user);
+//     }
+//         vector<int> answer(id_list.size()); // 기본값으로 0 으로 생성 
+//     for(int i = 0 ; i < id_list.size() ; ++i){
+//         string user = id_list[i];
+//         auto it = reportHash.find(user);
+//         if(it == reportHash.end()) continue;//만약 없다면 
+        
+//         for(string bad : it->second) // first -key , second value , map이니깐
+//         {
+//             if(resultHash[bad].size() >= k ) // size가 2이상이면 정지니깐 
+//             {
+//                 answer[i]++;
+//             }
+//         }
+//     }
+    
+    
 
-    for(int i = 0 ; i < report.size() ; i++)
-    {
-        stringstream ss(report[i]);
-        string temp1 ,temp2;
-        ss >> temp1 >> temp2;
-        myreport.push_back(make_pair(temp1,temp2));
-        //reportHash[temp1] = temp2;
-        mysmap[make_pair(temp1,temp2)]+=1;
-    }
-    for(auto m : myreport)
-    cout << m.first << " , " << m.second << endl;
-    
-    
-    for(int i = 0 ; i < myreport.size() ; i++)
-    {
-        mymap[myreport[i].first] = myreport[i].second; 
-    }
-    
-    for(auto m : mymap)
-   // cout << m.first << " , " << m.second << endl;
-
-    
-    return answer;
-}
+//     return answer;
+// }
 
 
 int main()
