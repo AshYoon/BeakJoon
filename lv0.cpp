@@ -332,6 +332,126 @@ using namespace std;
 // }
 
 
+//완주하지 못한 선수 
+// string solution(vector<string> participant, vector<string> completion) {
+
+    
+//     sort(participant.begin() , participant.end());
+//     sort(completion.begin(), completion.end());
+    
+//     for(int i = 0 ; i < completion.size() ; i++)
+//     {
+        
+//         if(participant[i] != completion[i])
+//         {
+//             return participant[i];
+//         }
+//     }
+
+//     return participant[participant.size()-1];;
+// }
+
+// 공원 산책 (구현)
+// vector<int> solution(vector<string> park, vector<string> routes) {
+//     vector<int> answer;
+//     int Width = park[0].length();
+//     int Height = park.size();
+//     pair<int, int> position; 
+    
+//     for(int i = 0 ; i < park.size() ; i++)
+//     {
+//         for(int j = 0 ; j < park[i].size() ; j++)
+//         {
+//             if( park[i][j] == 'S')
+//             {
+//                 position = make_pair(i,j);
+//                 park[i][j] = 'O'; // 다시 지나갈수도있으니깐 O 로 바꿔주자 
+//                // cout <<position.first << " " << position.second << endl;
+//                             break;
+//             }
+            
+//         }
+//     }
+    
+//     bool Isbreak = false;
+
+//     for(string s : routes)
+//     {
+//         Isbreak = false;
+//         int pos = s.find(' ');
+//         string direction = s.substr(0,pos);
+//         int strength = stoi(s.substr(pos+1));
+//         pair<int,int> temp;
+//         temp = position;
+        
+//         for(int i = 0 ; i < strength ; i++)
+//         {
+//             if(direction[0] == 'E')
+//             {
+//                 if(park[temp.first][temp.second+1] == 'O' && temp.second + 1 < Width)
+//                 {
+//                     temp.second += 1;
+//                 }
+//                 else
+//                 {
+//                     Isbreak = true;
+//                     break;
+//                 }
+           
+//             }
+//             else if(direction[0] == 'W')
+//             {
+//                 if(park[temp.first][temp.second-1] == 'O' && temp.second - 1 >= 0)
+//                 {
+//                     temp.second -= 1;
+//                 }
+//                 else
+//                 {
+
+//                     Isbreak = true;
+//                     break;
+//                 }
+//             }
+//             else if(direction[0] == 'S')
+//             {
+//                 if(park[temp.first+1][temp.second] == 'O' && temp.first + 1 <  Height )
+//                 {
+//                     temp.first += 1;
+//                 }
+//                 else
+//                 {
+//                     Isbreak = true;
+//                     break;
+//                 }            
+//             }
+//             else if(direction[0] == 'N')
+//             {
+//                 if(park[temp.first-1][temp.second] == 'O' && temp.first - 1 >= 0)
+//                 {
+//                     temp.first -= 1;
+//                 }
+//                 else
+//                 {
+//                     Isbreak = true;
+//                     break;
+//                 }            
+//             }
+                
+//         }
+//         position = Isbreak ? position : temp ;
+
+        
+        
+
+        
+//     }
+   
+//     answer.push_back(position.first);
+//     answer.push_back(position.second);
+//     return answer;
+// }
+
+
 int main()
 {
     // std::map<std::string , int> mymap;
