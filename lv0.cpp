@@ -5,6 +5,7 @@
 #include <stack>
 #include <algorithm>
 #include <sstream>
+
 #include <unordered_set>
 
 
@@ -452,6 +453,55 @@ using namespace std;
 // }
 
 
+// 크레인 인형뽑기 ( 프로그래머스 lv 1 )
+// int solution(vector<vector<int>> board, vector<int> moves) {
+//     int answer = 0;
+
+//     vector<stack<int>> stackboard;
+//     stack<int> bag;
+//     bag.push(0);
+//     stack<int> temp;
+//     for(int i = 0 ; i < board.size() ; i++)stackboard.push_back(temp);
+
+//     for(int i = board.size()-1 ; 0 <= i; i--)
+//     {
+//         for(int j = 0 ; j < board.size(); j++)
+//         {
+//             if(board[i][j] != 0)
+//             stackboard[j].push(board[i][j]);
+//         }
+//     }
+    
+
+//     int location;
+//     int puppet;
+//    for(int i = 0 ; i < moves.size() ; i++)
+//    {
+//        puppet = -1;
+//        location = moves[i] - 1;
+//        if(!stackboard[location].empty())
+//        {
+//            puppet = stackboard[location].top();
+//            stackboard[location].pop();
+//        }
+//        else
+//            continue;
+       
+//        if(bag.top() != puppet) bag.push(puppet);
+//        else if(bag.top() == puppet) 
+//        {
+
+//           bag.pop();
+//           answer++;
+//        }       
+
+//    }
+    
+    
+//     return answer*2;
+// }
+
+
 int main()
 {
     // std::map<std::string , int> mymap;
@@ -490,6 +540,24 @@ int main()
     // else{
     //     cout << (*pos).first << " , " << (*pos).second <<endl;
     // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
