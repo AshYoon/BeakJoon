@@ -501,6 +501,65 @@ using namespace std;
 //     return answer*2;
 // }
 
+// 키패드 누르기 
+// 왼손 오른솜 엄지
+// 왼손 start * , 오른손엄지 start # 
+//엄지는 상하좌우 4가지 , 한칸은 1 
+//1,4,7은 왼 , 369는 오 , 2580은 둘중에 가까운거 거리가같다면 오른손잡이는 오 , 왼손잡이는 왼 
+// 누를 번호가담긴배열 numbers , 
+// 
+// string solution(vector<int> numbers, string hand) {
+//     string answer = "";
+//     int ll = 10 , rl = 12 ; // left right location 
+//     int keypad;
+//     string H;
+//     if(hand[0] == 'r') H += 'R';
+//         else H+='L';
+    
+    
+//     for(int i = 0 ; i < numbers.size() ; i++)
+//     {
+//         keypad = numbers[i];
+//         if(numbers[i] == 3 || numbers[i] == 6 || numbers[i] == 9) answer += 'R' , rl = numbers[i];
+//         else if(numbers[i] == 1 || numbers[i] == 4 || numbers[i] == 7) answer+= 'L' , ll = numbers[i];
+//         else
+//         {
+//             if(numbers[i] == 0) numbers[i] = 11;
+            
+//             int leftlen = abs(numbers[i]-ll)/3 + abs(numbers[i]-ll)%3;
+//             int rightlen = abs(numbers[i]-rl)/3 + abs(numbers[i]-rl)%3;
+            
+//             if(leftlen < rightlen)
+//             {
+//                 answer += "L";
+//                 ll = numbers[i];
+//             }
+//             else if(leftlen > rightlen)
+//             {
+//                 answer += "R";
+//                 rl = numbers[i];
+//             }
+//             else
+//             {
+//                 if(hand == "left")
+//                 {
+//                     answer += "L";
+//                     ll = numbers[i];
+//                 }
+//                 else
+//                 {
+//                     answer += "R";
+//                     rl = numbers[i];
+//                 }
+//             }
+            
+            
+//         }
+//     }
+    
+    
+//     return answer;
+// }
 
 int main()
 {
