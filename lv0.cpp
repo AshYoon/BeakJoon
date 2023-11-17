@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <stack>
 #include <algorithm>
+#include <cmath>
 #include <sstream>
 
 #include <unordered_set>
@@ -561,8 +562,118 @@ using namespace std;
 //     return answer;
 // }
 
+
+
+
 int main()
 {
+    ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
+    // 버퍼관리 -> cin.tie(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // flying safely 9372
+    // int T;
+    // cin >> T;
+    // for(int i = 0 ; i < T ; i++)
+    // {
+    //     int node , edge , a , b;
+    //     cin >> node >> edge;
+    //     for(int j = 0 ; j < edge ; j++)
+    //     {
+    //         cin >> a >> b;
+
+    //     }
+    //     cout << node -1 << '\n';
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // boj 13414
+//     vector<string> a;
+//     string temp;
+//     unordered_map<string , int> hash;
+//     int K , L;
+//     cin >> K >> L;
+
+//     for(int i = 0 ; i< L ; i++)
+//     {
+//         cin >> temp;
+
+//         a.push_back(temp);
+//         hash[temp]++;
+
+//     }
+
+//    // cout << "-----------------------------" << "\n";
+
+//     for(int i = 0 ; i< K ; i++)
+//     {
+//         if(i==a.size())
+//         break;
+
+
+//         if(hash[a[i]] == 1)
+//         {
+//             cout << a[i] <<"\n";
+//         }
+//         else
+//         {
+//             K++;
+//             hash[a[i]]--;
+           
+//         }
+//     }
+     
+
+
+
+
+
+
+
+
+
+    //cout << solution(97615282) << endl;
+
     // std::map<std::string , int> mymap;
     
     // mymap.insert(std::make_pair("mike1",24));
