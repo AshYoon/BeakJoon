@@ -563,24 +563,123 @@ using namespace std;
 // }
 
 
+//int arr[100];
+void insert(int idx , int num , int arr[] , int& len){
+    len++;
+
+
+
+
+    for(int i = len ; i > 0 ; i--)
+    {
+
+            arr[i] = arr[i-1];
+
+    }
+    arr[idx] = num;
+    
+
+}
+void erase (int idx , int arr[] , int &len){
+    for(int i = 0 ; i < len ; i++)
+    {
+        if(i == idx && i + 1 < len)
+        {
+            arr[i] = arr[i+1];
+            idx++;
+        }
+    }
+    len--;
+
+    
+
+
+}
+void printArr(int arr[] , int&len)
+{
+    for(int i = 0 ; i < len;i++) cout << arr[i] << ' ' ;
+    cout << "\n\n";
+}
+void insert_test(){
+  cout << "***** insert_test *****\n";
+  int arr[10] = {10, 20, 30};
+  int len = 3;
+  insert(3, 40, arr, len); // 10 20 30 40
+  printArr(arr, len);
+  insert(1, 50, arr, len); // 10 50 20 30 40
+  printArr(arr, len);
+  insert(0, 15, arr, len); // 15 10 50 20 30 40
+  printArr(arr, len);
+}
+
+void erase_test(){
+  cout << "***** erase_test *****\n";
+  int arr[10] = {10, 50, 40, 30, 70, 20};
+  int len = 6;
+  erase(4, arr, len); // 10 50 40 30 20
+  printArr(arr, len);
+  erase(1, arr, len); // 10 40 30 20
+  printArr(arr, len);
+  erase(3, arr, len); // 10 40 30
+  printArr(arr, len);
+}
+
+int freq[26]; // 전역으로 선언하면 0 으로 자동초기화 
+
+bool solution(int arr[] , int length){
+    unordered_map<int , int> hash;
+    for(int i = 0 ; i < length ; i++)
+    {
+        if(hash[100 - arr[i]] != 0 )
+        {
+            return true;
+        }
+        else
+        {
+            hash[arr[i]]++;
+        }
+    }
+    return false;
+
+}
+
+int a[1000001] = {};
+bool occur[2000001];
+int n , x;
 
 
 int main()
 {
     ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
-    // 버퍼관리 -> cin.tie(0);
+    // insert_test();
+    // erase_test();
+
+    
+    int ans = 0;
+    cin >> n;
+    for(int i = 0 ; i < n ; i++) cin >> a[i];
+    cin >> x;
+
+    for(int i = 0 ; i < n ; i ++)
+    {
+        if(x-a[i] > 0 && occur[x-a[i]]) ans++;
+        occur[a[i]] = true;
+    }
+
+
+    cout << ans << '\n';
 
 
 
 
 
 
+    // string s;
+    // cin >> s;
 
-
-
-
-
-
+    // for(char c : s) freq[c-'a']++;
+    // for(int i = 0 ; i < 26 ; i++)
+    //     cout << freq[i] << ' ';
 
 
 
