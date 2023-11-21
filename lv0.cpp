@@ -6,8 +6,9 @@
 #include <algorithm>
 #include <cmath>
 #include <sstream>
-
 #include <unordered_set>
+#include <list>
+//#include <bits/stdc++.h>
 
 
 using namespace std;
@@ -370,13 +371,10 @@ using namespace std;
 //                 park[i][j] = 'O'; // 다시 지나갈수도있으니깐 O 로 바꿔주자 
 //                // cout <<position.first << " " << position.second << endl;
 //                             break;
-//             }
-            
+//             }        
 //         }
 //     }
-    
 //     bool Isbreak = false;
-
 //     for(string s : routes)
 //     {
 //         Isbreak = false;
@@ -384,8 +382,7 @@ using namespace std;
 //         string direction = s.substr(0,pos);
 //         int strength = stoi(s.substr(pos+1));
 //         pair<int,int> temp;
-//         temp = position;
-        
+//         temp = position;    
 //         for(int i = 0 ; i < strength ; i++)
 //         {
 //             if(direction[0] == 'E')
@@ -399,7 +396,6 @@ using namespace std;
 //                     Isbreak = true;
 //                     break;
 //                 }
-           
 //             }
 //             else if(direction[0] == 'W')
 //             {
@@ -409,7 +405,6 @@ using namespace std;
 //                 }
 //                 else
 //                 {
-
 //                     Isbreak = true;
 //                     break;
 //                 }
@@ -437,17 +432,10 @@ using namespace std;
 //                     Isbreak = true;
 //                     break;
 //                 }            
-//             }
-                
+//             }  
 //         }
 //         position = Isbreak ? position : temp ;
-
-        
-        
-
-        
-//     }
-   
+//     } 
 //     answer.push_back(position.first);
 //     answer.push_back(position.second);
 //     return answer;
@@ -486,19 +474,14 @@ using namespace std;
 //            stackboard[location].pop();
 //        }
 //        else
-//            continue;
-       
+//            continue;      
 //        if(bag.top() != puppet) bag.push(puppet);
 //        else if(bag.top() == puppet) 
 //        {
-
 //           bag.pop();
 //           answer++;
 //        }       
-
-//    }
-    
-    
+//    }  
 //     return answer*2;
 // }
 
@@ -509,6 +492,7 @@ using namespace std;
 //1,4,7은 왼 , 369는 오 , 2580은 둘중에 가까운거 거리가같다면 오른손잡이는 오 , 왼손잡이는 왼 
 // 누를 번호가담긴배열 numbers , 
 // 
+
 // string solution(vector<int> numbers, string hand) {
 //     string answer = "";
 //     int ll = 10 , rl = 12 ; // left right location 
@@ -516,8 +500,6 @@ using namespace std;
 //     string H;
 //     if(hand[0] == 'r') H += 'R';
 //         else H+='L';
-    
-    
 //     for(int i = 0 ; i < numbers.size() ; i++)
 //     {
 //         keypad = numbers[i];
@@ -526,10 +508,10 @@ using namespace std;
 //         else
 //         {
 //             if(numbers[i] == 0) numbers[i] = 11;
-            
+//            
 //             int leftlen = abs(numbers[i]-ll)/3 + abs(numbers[i]-ll)%3;
 //             int rightlen = abs(numbers[i]-rl)/3 + abs(numbers[i]-rl)%3;
-            
+//            
 //             if(leftlen < rightlen)
 //             {
 //                 answer += "L";
@@ -553,135 +535,100 @@ using namespace std;
 //                     rl = numbers[i];
 //                 }
 //             }
-            
-            
+//            
+//            
 //         }
 //     }
-    
-    
+//    
+//    
 //     return answer;
 // }
 
 
-//int arr[100];
-void insert(int idx , int num , int arr[] , int& len){
-    len++;
+// int arr[100];
+// void insert(int idx , int num , int arr[] , int& len){
+//     len++;
+//     for(int i = len ; i > 0 ; i--)
+//     {
+//             arr[i] = arr[i-1];
+//     }
+//     arr[idx] = num;
+// }
+// void erase (int idx , int arr[] , int &len){
+//     for(int i = 0 ; i < len ; i++)
+//     {
+//         if(i == idx && i + 1 < len)
+//         {
+//             arr[i] = arr[i+1];
+//             idx++;
+//         }
+//     }
+//     len--;
+// }
+// void printArr(int arr[] , int&len)
+// {
+//     for(int i = 0 ; i < len;i++) cout << arr[i] << ' ' ;
+//     cout << "\n\n";
+// }
+// void insert_test(){
+//   cout << "***** insert_test *****\n";
+//   int arr[10] = {10, 20, 30};
+//   int len = 3;
+//   insert(3, 40, arr, len); // 10 20 30 40
+//   printArr(arr, len);
+//   insert(1, 50, arr, len); // 10 50 20 30 40
+//   printArr(arr, len);
+//   insert(0, 15, arr, len); // 15 10 50 20 30 40
+//   printArr(arr, len);
+// }
+// void erase_test(){
+//   cout << "***** erase_test *****\n";
+//   int arr[10] = {10, 50, 40, 30, 70, 20};
+//   int len = 6;
+//   erase(4, arr, len); // 10 50 40 30 20
+//   printArr(arr, len);
+//   erase(1, arr, len); // 10 40 30 20
+//   printArr(arr, len);
+//   erase(3, arr, len); // 10 40 30
+//   printArr(arr, len);
+// }
+// int freq[26]; // 전역으로 선언하면 0 으로 자동초기화 
+// bool solution(int arr[] , int length){
+//     unordered_map<int , int> hash;
+//     for(int i = 0 ; i < length ; i++)
+//     {
+//         if(hash[100 - arr[i]] != 0 )
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             hash[arr[i]]++;
+//         }
+//     }
+//     return false;
+// }
 
-
-
-
-    for(int i = len ; i > 0 ; i--)
-    {
-
-            arr[i] = arr[i-1];
-
-    }
-    arr[idx] = num;
-    
-
-}
-void erase (int idx , int arr[] , int &len){
-    for(int i = 0 ; i < len ; i++)
-    {
-        if(i == idx && i + 1 < len)
-        {
-            arr[i] = arr[i+1];
-            idx++;
-        }
-    }
-    len--;
-
-    
-
-
-}
-void printArr(int arr[] , int&len)
-{
-    for(int i = 0 ; i < len;i++) cout << arr[i] << ' ' ;
-    cout << "\n\n";
-}
-void insert_test(){
-  cout << "***** insert_test *****\n";
-  int arr[10] = {10, 20, 30};
-  int len = 3;
-  insert(3, 40, arr, len); // 10 20 30 40
-  printArr(arr, len);
-  insert(1, 50, arr, len); // 10 50 20 30 40
-  printArr(arr, len);
-  insert(0, 15, arr, len); // 15 10 50 20 30 40
-  printArr(arr, len);
-}
-
-void erase_test(){
-  cout << "***** erase_test *****\n";
-  int arr[10] = {10, 50, 40, 30, 70, 20};
-  int len = 6;
-  erase(4, arr, len); // 10 50 40 30 20
-  printArr(arr, len);
-  erase(1, arr, len); // 10 40 30 20
-  printArr(arr, len);
-  erase(3, arr, len); // 10 40 30
-  printArr(arr, len);
-}
-
-int freq[26]; // 전역으로 선언하면 0 으로 자동초기화 
-
-bool solution(int arr[] , int length){
-    unordered_map<int , int> hash;
-    for(int i = 0 ; i < length ; i++)
-    {
-        if(hash[100 - arr[i]] != 0 )
-        {
-            return true;
-        }
-        else
-        {
-            hash[arr[i]]++;
-        }
-    }
-    return false;
-
-}
-
-int a[1000001] = {};
-bool occur[2000001];
-int n , x;
-
-
-int main()
-{
-    ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
-    // insert_test();
-    // erase_test();
-
-    
-    int ans = 0;
-    cin >> n;
-    for(int i = 0 ; i < n ; i++) cin >> a[i];
-    cin >> x;
-
-    for(int i = 0 ; i < n ; i ++)
-    {
-        if(x-a[i] > 0 && occur[x-a[i]]) ans++;
-        occur[a[i]] = true;
-    }
-
-
-    cout << ans << '\n';
-
-
-
-
-
-
-    // string s;
-    // cin >> s;
-
-    // for(char c : s) freq[c-'a']++;
-    // for(int i = 0 ; i < 26 ; i++)
-    //     cout << freq[i] << ' ';
-
-
+//BOJ 3273 SumX 
+// int a[1000001] = {};
+// bool occur[2000001];
+// int n , x;
+// int main()
+// {
+//     ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
+//     // insert_test();
+//     // erase_test();
+//     int ans = 0;
+//     cin >> n;
+//     for(int i = 0 ; i < n ; i++) cin >> a[i];
+//     cin >> x;
+//     for(int i = 0 ; i < n ; i ++)
+//     {
+//         if(x-a[i] > 0 && occur[x-a[i]]) ans++;
+//         occur[a[i]] = true;
+//     }
+//     cout << ans << '\n';
+// }
 
     // flying safely 9372
     // int T;
@@ -693,83 +640,104 @@ int main()
     //     for(int j = 0 ; j < edge ; j++)
     //     {
     //         cin >> a >> b;
-
     //     }
     //     cout << node -1 << '\n';
     // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // boj 13414
+// boj 13414
 //     vector<string> a;
 //     string temp;
 //     unordered_map<string , int> hash;
 //     int K , L;
 //     cin >> K >> L;
-
 //     for(int i = 0 ; i< L ; i++)
 //     {
 //         cin >> temp;
-
 //         a.push_back(temp);
 //         hash[temp]++;
-
 //     }
-
 //    // cout << "-----------------------------" << "\n";
-
 //     for(int i = 0 ; i< K ; i++)
 //     {
 //         if(i==a.size())
 //         break;
-
-
-//         if(hash[a[i]] == 1)
+//        if(hash[a[i]] == 1)
 //         {
 //             cout << a[i] <<"\n";
 //         }
 //         else
 //         {
 //             K++;
-//             hash[a[i]]--;
-           
+//             hash[a[i]]--;          
 //         }
 //     }
-     
+
+
+    //boj1406 에디터  영어 소문자만 기록 , 커서 , 길이가 L인 문자열  , 커서는 L+1까지 위치가능 
+    // L, 커서 왼쪽으로한칸 , D , 커서 오른쪽으로 한칸 , B  커서 왼쪽 문자 삭제 , P$ , $라는 문자를 커서 왼쪽에추가 
+    // list<char> lt;
+    // string s;
+    // cin >> s;
+    // int N = s.length();
+    // for (int i = 0; i < N; i++)
+    //     lt.push_back(s[i]);
+    // list<char>::iterator t = lt.end(); // 첫위치는 해당 배열의 끝 + 1 즉 insert하면 끝에 추가 -- 하면 끝에 커서가 가는것 
+    // int M;
+    // cin >> M;
+    // for (int i = 0; i < M; i++)
+    // {
+    //     char temp;
+    //     cin >> temp;
+    //     if (temp == 'P')
+    //     {
+    //         char add;
+    //         cin >> add;
+    //         lt.insert(t, add);
+    //     }
+    //     else if (temp == 'L')
+    //     {
+    //         if (t!=lt.begin())
+    //         {
+    //             t--;
+    //         }
+    //     }
+    //     else if (temp == 'B')
+    //     {
+    //         if (t != lt.begin())
+    //         {
+    //            t--;
+    //            t = lt.erase(t);
+    //         }
+    //     }
+    //     else if (temp == 'D')
+    //     {
+    //         if (t != lt.end())
+    //         {
+    //             t++;
+    //         }
+    //     }
+    // }
+    // for (auto i : lt) cout << i ;
+
+//문제 원형연결리스트 내의 임의의 노드 하나가 주어졌을때 해당 list 길이를 효율적으로 구하는방법 ? 같은노드가 나올때까지 순회한다? O 
+//
+
+
+int main()
+{
+         ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
+
+        stack<int> st ;
+        st.push(5);
 
 
 
 
 
 
-
-
+    //  for(char c : s) freq[c-'a']++;
+    //  for(int i = 0 ; i < 26 ; i++)
+    //     cout << freq[i] << ' ';
 
     //cout << solution(97615282) << endl;
 
@@ -809,26 +777,6 @@ int main()
     // else{
     //     cout << (*pos).first << " , " << (*pos).second <<endl;
     // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return 0;
