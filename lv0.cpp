@@ -8,6 +8,7 @@
 #include <sstream>
 #include <unordered_set>
 #include <list>
+#include <queue>
 //#include <bits/stdc++.h>
 
 
@@ -720,15 +721,136 @@ using namespace std;
     // for (auto i : lt) cout << i ;
 
 //문제 원형연결리스트 내의 임의의 노드 하나가 주어졌을때 해당 list 길이를 효율적으로 구하는방법 ? 같은노드가 나올때까지 순회한다? O 
-//
 
+    //boj 10828 스택 구현 
+    // const int MX = 1000005;
+    // int pos =  0;
+    // int st[MX] = {};
+    // int N;
+    // cin >> N;
+    // for(int i = 0 ; i < N ;i++)
+    // {
+    //     string temp;
+    //     cin >> temp;
+    //     if(temp == "push")
+    //     {
+    //         int add ;
+    //         cin >> add;
+    //         st[pos] = add;
+    //         pos++;
+    //     }
+    //     else if( temp == "top")
+    //     {
+    //         if(pos == 0) cout << "-1" << '\n';
+    //         else
+    //         {
+    //             cout << st[pos-1] << '\n';
+    //         }
+    //     }
+    //     else if( temp == "size")
+    //     {
+    //         cout << pos << '\n';
+    //     }
+    //     else if( temp == "empty")
+    //     {
+    //         if(pos == 0) cout << "1" << '\n';
+    //         else
+    //         cout<< '0'<<'\n';
+    //     }
+    //     else if( temp == "pop")
+    //     {
+    //         if( pos == 0)
+    //         {
+    //             cout << "-1" << '\n';
+    //         }
+    //         else 
+    //         {
+    //             cout << st[pos-1] << '\n';
+    //             pos--;
+    //         }
+    //     }
+    // }
+#define X first
+#define Y second
+
+int board[502][502];
+bool vis[502][502];
+
+int dx[4] = { 1 , 0 , -1 , 0};
+int dy[4] = {0 , 1 , 0 , -1};
+// 보통 x 가행 , y 가 열 , 행 -> 가 , 열 - > 세 
 
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
 
-        stack<int> st ;
-        st.push(5);
+    int m , n;
+    cin >> n >> m;
+    for(int i = 0 ; i < n ; i++)
+        for(int j = 0 ; j < m ; j++)
+        {
+            cin >> board[i][j];
+        }
+
+
+        int num = 0 ;  // 그림의 수 
+        int mx = 0 ; // 그림의 최댓값
+
+
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < m ; j++){
+                if(board[i][j] == 0 || vis[i][j]) continue;
+                num++;
+                queue<pair<int,int>> q;
+                vis[i][j] = 1;
+                q.push({i,j});
+                int area = 0;
+                while(q.empty())
+                {
+                    pair<int,int> cur = q.front() ; q.pop();
+                    area++;
+                    for(int dir = 0 ; dir < 4 ; dir++)
+                    {
+                        int nx = cur.X + dx[dir];
+                        int ny = cur.Y + dy[dir];
+                        if(nx <  0 || nx >= n || ny < 0 || ny >= m) continue;
+                        if(vis[nx][ny] || board[nx][ny] != 1) continue;
+                        vis[nx][ny] = 1;
+                        q.push({nx,ny});
+                    }
+                }
+                mx = max(mx,area);
+            }
+        }
+        cout << num << '\n' << mx;
+
+
+
+        // queue<pair<int,int>> Q;
+        // vis[0][0] = 1;
+        // Q.push({0,0});
+        // while(!Q.empty())
+        // {
+        //     pair<int,int> cur = Q.front() ; Q.pop(); // 맨앞에 큐 값 받아오고 pop 
+        //     cout << '(' << cur.X << " , " << cur.Y << ") - >";
+        //     for(int dir = 0 ; dir < 4 ; dir++)
+        //     {
+        //         int nx = cur.X + dx[dir];
+        //         int ny = cur.Y + dx[dir];
+        //         if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+        //         if(vis[nx][ny] || board[nx][ny] != 1) continue;
+        //         vis[nx][ny] = 1;
+        //         Q.push({nx,ny});
+        //     }
+        // }
+        
+
+
+    
+
+
+
+        
 
 
 
