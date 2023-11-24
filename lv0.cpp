@@ -770,6 +770,30 @@ using namespace std;
     //         }
     //     }
     // }
+
+
+
+// 요격 시스템 (그리디)
+// int solution(vector<vector<int>> targets) {
+//     int answer = 0;
+//     sort(targets.begin(),targets.end() , [](vector<int>& a , vector<int>& b) { return a[1] < b[1];}); // 이게 핵심 
+//     pair<int, int> range = {targets[0][0] , targets[0][1] };
+//     // 현재 e 값을 기준으로 정렬했으니깐 만약에 n번째의 e 보다 큰값의 s 값이 들어온다면 해당 미사일은 포함되지않음 
+//     int minVal = -1;
+//     for(int i = 0 ; i < targets.size() ; i ++)
+//     {
+//          pair<int, int> range = {targets[i][0] , targets[i][1] }; 
+//         if(minVal <= range.first)
+//         {
+//             answer++;
+//             minVal = range.second;
+//         }
+//     } 
+//     return answer;
+// }
+
+
+
 #define X first
 #define Y second
 
