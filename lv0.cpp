@@ -792,67 +792,68 @@ using namespace std;
 //     return answer;
 // }
 
+//1926 BOJ ( BFS )
+// #define X first
+// #define Y second
+// int board[502][502];
+// bool vis[502][502];
+// int dx[4] = { 1 , 0 , -1 , 0};
+// int dy[4] = {0 , 1 , 0 , -1};
+// {
+//         int m , n;
+//     cin >> n >> m;
+//     for(int i = 0 ; i < n ; i++)
+//         for(int j = 0 ; j < m ; j++)
+//         {
+//             cin >> board[i][j];
+//         }
+//         int num = 0 ;  // 그림의 수 
+//         int mx = 0 ; // 그림의 최댓값
+//         for(int i = 0 ; i < n ; i++){
+//             for(int j = 0 ; j < m ; j++){
+//                 if(board[i][j] == 0 || vis[i][j]) continue;
+//                 num++;
+//                 queue<pair<int,int>> q;
+//                 vis[i][j] = 1;
+//                 q.push({i,j});
+//                 int area = 0;
+//                 while(!q.empty())
+//                 {
+//                     pair<int,int> cur = q.front() ; q.pop();
+//                     area++;
+//                     for(int dir = 0 ; dir < 4 ; dir++)
+//                     {
+//                         int nx = cur.X + dx[dir];
+//                         int ny = cur.Y + dy[dir];
+//                         if(nx <  0 || nx >= n || ny < 0 || ny >= m) continue;
+//                         if(vis[nx][ny] || board[nx][ny] != 1) continue;
+//                         vis[nx][ny] = 1;
+//                         q.push({nx,ny});
+//                     }                  
+//                 }
+//                 mx = max(mx,area);
+//             }
+//         }
+//         cout << num << '\n' << mx;
+// }
+
+
+
 const int MX = 1000005;
 int dat[MX];
 int head = 0 , tail = 0;
 
 
 
-#define X first
-#define Y second
 
-int board[502][502];
-bool vis[502][502];
 
-int dx[4] = { 1 , 0 , -1 , 0};
-int dy[4] = {0 , 1 , 0 , -1};
+
 // 보통 x 가행 , y 가 열 , 행 -> 가 , 열 - > 세 
 
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
 
-    int m , n;
-    cin >> n >> m;
-    for(int i = 0 ; i < n ; i++)
-        for(int j = 0 ; j < m ; j++)
-        {
-            cin >> board[i][j];
-        }
-
-
-        int num = 0 ;  // 그림의 수 
-        int mx = 0 ; // 그림의 최댓값
-
-
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < m ; j++){
-                if(board[i][j] == 0 || vis[i][j]) continue;
-                num++;
-                queue<pair<int,int>> q;
-                vis[i][j] = 1;
-                q.push({i,j});
-                int area = 0;
-                while(!q.empty())
-                {
-                    pair<int,int> cur = q.front() ; q.pop();
-                    area++;
-                    for(int dir = 0 ; dir < 4 ; dir++)
-                    {
-                        int nx = cur.X + dx[dir];
-                        int ny = cur.Y + dy[dir];
-                        if(nx <  0 || nx >= n || ny < 0 || ny >= m) continue;
-                        if(vis[nx][ny] || board[nx][ny] != 1) continue;
-                        vis[nx][ny] = 1;
-                        q.push({nx,ny});
-                    }
-                    
-                }
-
-                mx = max(mx,area);
-            }
-        }
-        cout << num << '\n' << mx;
 
 
 
