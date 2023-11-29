@@ -792,6 +792,10 @@ using namespace std;
 //     return answer;
 // }
 
+const int MX = 1000005;
+int dat[MX];
+int head = 0 , tail = 0;
+
 
 
 #define X first
@@ -829,7 +833,7 @@ int main()
                 vis[i][j] = 1;
                 q.push({i,j});
                 int area = 0;
-                while(q.empty())
+                while(!q.empty())
                 {
                     pair<int,int> cur = q.front() ; q.pop();
                     area++;
@@ -842,7 +846,9 @@ int main()
                         vis[nx][ny] = 1;
                         q.push({nx,ny});
                     }
+                    
                 }
+
                 mx = max(mx,area);
             }
         }
