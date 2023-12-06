@@ -1090,6 +1090,75 @@ using namespace std;
 //     cout << ans ;   
 //  }
 
+//programmers 미로탈출 ( bfs )
+// int Ldist[102][102];
+// int Edist[102][102];
+// int dx[4] = { -1 ,1 ,0 , 0};
+// int dy[4] = { 0, 0, -1 , 1};
+// int solution(vector<string> maps) {
+//     int answer = 0;
+//     pair<int,int> start , lever , exit;
+//     for(int i = 0 ; i < maps.size() ; i++)
+//     {
+//         fill(Ldist[i] , Ldist[i] + 102,-1);
+//         fill(Edist[i] , Edist[i] + 102,-1);
+//     }   
+//     for(int i = 0 ; i < maps.size();i++)
+//     {
+//         for(int j = 0 ; j < maps[0].length() ;j++)
+//         {
+//             if(maps[i][j] == 'S') start = { i , j };
+//             if(maps[i][j] == 'L') lever = { i , j };
+//             if(maps[i][j] == 'E') exit = { i , j };
+//         }
+//     }
+//     queue<pair<int,int>> q;
+//     q.push({start.X , start.Y});
+//     Ldist[start.X][start.Y] = 0;
+//     while(!q.empty())
+//     {
+//         pair<int,int> cur = q.front() ; q.pop();
+//         for(int dir = 0 ; dir < 4 ; dir++)
+//         {
+//             int nx = cur.X + dx[dir];
+//             int ny = cur.Y + dy[dir];
+//             if(nx < 0 || maps.size() <= nx || ny < 0 || maps[0].length() <= ny) continue;
+//             if(maps[nx][ny] == 'X') continue;
+//             if(Ldist[nx][ny] > 0) continue;
+//             Ldist[nx][ny] = Ldist[cur.X][cur.Y] + 1;
+//             q.push({nx,ny});
+//         }
+//     }
+//     if(Ldist[lever.X][lever.Y] == -1) return -1;
+//     q.push({lever.X , lever.Y});
+//     Edist[lever.X][lever.Y] = Ldist[lever.X][lever.Y];
+//     while(!q.empty())
+//     {
+//         pair<int,int> cur = q.front() ; q.pop();
+//         for(int dir = 0 ; dir < 4 ; dir++)
+//         {
+//             int nx = cur.X + dx[dir];
+//             int ny = cur.Y + dy[dir];
+//             if(nx < 0 || maps.size() <= nx || ny < 0 || maps[0].length() <= ny ) continue;
+//             if(maps[nx][ny] == 'X') continue;
+//             if(Edist[nx][ny] > 0) continue;
+//             Edist[nx][ny] = Edist[cur.X][cur.Y] + 1;
+//             q.push({nx,ny});
+//         }
+//     }
+//     Edist[exit.X][exit.Y] == -1 ? answer = -1 : answer = Edist[exit.X][exit.Y]; 
+//     for(int i = 0 ; i < maps.size();i++)
+//     {        
+//         for(int j = 0 ; j < maps[0].length() ; j++)
+//         {
+//             cout << Ldist[i][j] << " ";
+//         }
+//         cout << '\n';
+//     }
+//     return answer;
+// }
+
+
 const int MX = 1000005;
 int dat[MX];
 int head = 0 , tail = 0;
@@ -1105,63 +1174,62 @@ int dy[4] = {0 , 1 , 0 , -1};
 
 
 
-int solution(vector<string> board)
-{
-    int answer = 0;
-    pair<int ,int> goal;
+// int solution(vector<string> board)
+// {
+//     int answer = 0;
+//     pair<int ,int> goal;
     
-    for(int i = 0 ; i < board.size(); i++)
-    {
-        for(int j = 0 ; j < board[i].length() ; j++)
-        {
-            myboard[i][j] = board[i][j];
-            if(board[i][j] == 'G') goal = make_pair(i,j);
+//     for(int i = 0 ; i < board.size(); i++)
+//     {
+//         for(int j = 0 ; j < board[i].length() ; j++)
+//         {
+//             myboard[i][j] = board[i][j];
+//             if(board[i][j] == 'G') goal = make_pair(i,j);
             
-        }
-    }
-    
-    int moves = 0;
-    int minmove = 100000;
-    for(int i = 0 ; i < board.size();i++)
-    {
-        for(int j = 0 ; j < board[i].length(); j++)
-        {
-            if(board[i][j] != 'R') continue;
-            queue<pair<int,int>> q;
-            visited[i][j] = 1;
-            q.push({i,j});
-            while(!q.empty())
-            {
-                moves++;
-                pair<int,int> cur = q.front() ; q.pop();
-                for(int dir = 0 ; dir < 4 ; dir++)
-                {
-                    int nx = cur.X + dx[dir];
-                    int ny = cur.Y + dy[dir];
-                    if(nx < 0 || nx >=100 || ny < 0 || ny >= 100) continue;
-                    if(visited[nx][ny] || myboard[nx][ny] != '.') continue;
+//         }
+//     }
+//     int moves = 0;
+//     int minmove = 100000;
+//     for(int i = 0 ; i < board.size();i++)
+//     {
+//         for(int j = 0 ; j < board[i].length(); j++)
+//         {
+//             if(board[i][j] != 'R') continue;
+//             queue<pair<int,int>> q;
+//             visited[i][j] = 1;
+//             q.push({i,j});
+//             while(!q.empty())
+//             {
+//                 moves++;
+//                 pair<int,int> cur = q.front() ; q.pop();
+//                 for(int dir = 0 ; dir < 4 ; dir++)
+//                 {
+//                     int nx = cur.X + dx[dir];
+//                     int ny = cur.Y + dy[dir];
+//                     if(nx < 0 || nx >=100 || ny < 0 || ny >= 100) continue;
+//                     if(visited[nx][ny] || myboard[nx][ny] != '.') continue;
 
-                    cout << nx << ny << '\n';
-                    if(visited[nx][ny] != 0) 
-                    {
-                        //cout << visited[nx][ny] << " " << moves << " " << '\n';
-                        visited[nx][ny] = min(moves,visited[nx][ny]);
-                    }
-                    else if(visited[nx][ny] == 0 ) visited[nx][ny] = moves;
+//                     cout << nx << ny << '\n';
+//                     if(visited[nx][ny] != 0) 
+//                     {
+//                         //cout << visited[nx][ny] << " " << moves << " " << '\n';
+//                         visited[nx][ny] = min(moves,visited[nx][ny]);
+//                     }
+//                     else if(visited[nx][ny] == 0 ) visited[nx][ny] = moves;
 
-                    q.push({nx,ny});
-                }
-                //cout << moves << '\n';
-            }
+//                     q.push({nx,ny});
+//                 }
+//                 //cout << moves << '\n';
+//             }
             
-        }
-    }
+//         }
+//     }
     
     
-    cout << goal.X << " " << goal.Y << '\n';
-    return -1;
+//     cout << goal.X << " " << goal.Y << '\n';
+//     return -1;
 
-}
+// }
 
 
 // 보통 x 가행 , y 가 열 , 행 -> 가 , 열 - > 세 
