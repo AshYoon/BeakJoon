@@ -1234,13 +1234,55 @@ int dy[4] = {0 , 1 , 0 , -1};
 
 // 보통 x 가행 , y 가 열 , 행 -> 가 , 열 - > 세 
 
+
+
+int testfunc(int a , int b , int m )
+{
+    int val = 1;
+    while(b--) val *= a;
+
+    cout << val << '\n';
+    return val % m;
+}
+
+using ll = long long;
+int func2(int a , int b , int m)
+{
+    ll val = 1;
+    while(b--) val*= a;
+    return val % m ;
+}
+
+ll POW(ll a , ll b , ll m) // 귀납적으로 사고해야 이런 올바른 답이 가능 
+{
+    if(b==1) return a % m; // b 가 1이라면 그냥 a / m 하면되는 예외처리 
+    ll val = POW(a , b/2 , m); // val 은 a 의 b /2 제곱 한거에 m 나눈거 
+    val = val * val % m; // val 은 val * val 의 m 으로나눈 나머지 
+    if( b % 2 == 0 ) return val; // b 가 2라면 val 그대로 return 
+    return val * a % m; // 아니라면 val에 a 한번더 곱해서 나눠서 리턴 
+}
+
+
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
 
         vector<string> b = {"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."};
 
-        cout << solution(b) << '\n';
+        //cout << solution(b) << '\n';
+
+
+        int A , B , C;
+        cin >> A >> B >> C;
+        cout << POW(A,B,C);
+        //내가만약 A의 2승을 구할수있다면 A 의 11승은 A^2 을 5번곱한후 A를 곱해주면된다 
+        int APrime = A * A;
+        int temp = B % 2 != 0 ? B / 2 + 1 : B / 2 ;
+        cout << temp << '\n';
+        ll val = 1;
+        val = APrime * temp;
+        cout << val / C << '\n';
+
 
 
         // queue<pair<int,int>> Q;
@@ -1261,7 +1303,6 @@ int main()
         //     }
         // }
         
-
 
     
 
