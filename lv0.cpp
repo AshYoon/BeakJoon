@@ -1158,6 +1158,55 @@ using namespace std;
 //     return answer;
 // }
 
+//BOJ 11729 하노이 탑 이동순서 
+// void func ( int a , int b , int n)
+// {
+//     if( n == 1 ) // base condition 
+//     {
+//         cout << a << " " << b << '\n';
+//         return ;
+//     }
+//     func ( a , 6 -a -b , n-1); // 먼저 n -1 개를 a 와 b 가 아닌 기둥으로 옮기고 
+//     cout << a << " " << b << '\n'; // 그 다음 a 기둥의 제일 마지막 원판을 b 기둥으로 옮긴뒤 
+//     func( 6 -a - b , b , n-1); // a 와 b 가 아닌 기둥에 있는 n -1 개의 원판을 b 로 옮겨 준다 
+// }
+// {
+//         int k;
+//         cin >> k;
+//         cout << (1 << k) -1 << '\n'; // 하노이 탑 최소 횟수 식 
+//         func( 1 ,3 ,k);
+// }
+
+// void recursion(int n)
+// {
+//     if( n > 0 )
+//     {
+//         cout << n << '\n';
+//         recursion( n -1 );
+//     }   
+// }
+// int recursionPlus(int n)
+// {
+//     if(n==0) return 0;
+//     return n + recursionPlus(n -1 );
+// }
+
+//BOJ 1074 번 Z 
+// int func( int n , int r , int c)
+// {
+//     if(n == 0 ) return 0;
+//     int half = 1 <<(n-1);
+//     if(r < half && c < half)  return func(n-1 , r , c );
+//     if(r < half && c >= half) return half * half + func( n - 1 , r , c - half);
+//     if( r >= half && c < half)  return 2 * half * half + func(n - 1 , r - half , c);
+//     return 3 * half * half + func( n -1 , r - half , c - half);
+// }
+// {
+//     int  n , r , c;
+//     cin >> n >> r >> c;
+//     cout << func(n ,r ,c) << '\n';
+// }
+
 
 const int MX = 1000005;
 int dat[MX];
@@ -1177,15 +1226,13 @@ int dy[4] = {0 , 1 , 0 , -1};
 // int solution(vector<string> board)
 // {
 //     int answer = 0;
-//     pair<int ,int> goal;
-    
+//     pair<int ,int> goal;   
 //     for(int i = 0 ; i < board.size(); i++)
 //     {
 //         for(int j = 0 ; j < board[i].length() ; j++)
 //         {
 //             myboard[i][j] = board[i][j];
-//             if(board[i][j] == 'G') goal = make_pair(i,j);
-            
+//             if(board[i][j] == 'G') goal = make_pair(i,j);    
 //         }
 //     }
 //     int moves = 0;
@@ -1208,7 +1255,6 @@ int dy[4] = {0 , 1 , 0 , -1};
 //                     int ny = cur.Y + dy[dir];
 //                     if(nx < 0 || nx >=100 || ny < 0 || ny >= 100) continue;
 //                     if(visited[nx][ny] || myboard[nx][ny] != '.') continue;
-
 //                     cout << nx << ny << '\n';
 //                     if(visited[nx][ny] != 0) 
 //                     {
@@ -1216,72 +1262,98 @@ int dy[4] = {0 , 1 , 0 , -1};
 //                         visited[nx][ny] = min(moves,visited[nx][ny]);
 //                     }
 //                     else if(visited[nx][ny] == 0 ) visited[nx][ny] = moves;
-
 //                     q.push({nx,ny});
 //                 }
 //                 //cout << moves << '\n';
-//             }
-            
+//             }        
 //         }
 //     }
-    
-    
 //     cout << goal.X << " " << goal.Y << '\n';
 //     return -1;
-
 // }
-
 
 // 보통 x 가행 , y 가 열 , 행 -> 가 , 열 - > 세 
 
 
 
-int testfunc(int a , int b , int m )
+// int testfunc(int a , int b , int m )
+// {
+//     int val = 1;
+//     while(b--) val *= a;
+//     cout << val << '\n';
+//     return val % m;
+// }
+// using ll = long long;
+// int func2(int a , int b , int m)
+// {
+//     ll val = 1;
+//     while(b--) val*= a;
+//     return val % m ;
+// }
+// ll POW(ll a , ll b , ll m) // 귀납적으로 사고해야 이런 올바른 답이 가능 
+// {
+//     if(b==1) return a % m; // b 가 1이라면 그냥 a / m 하면되는 예외처리 
+//     ll val = POW(a , b/2 , m); // val 은 a 의 b /2 제곱 한거에 m 나눈거 
+//     val = val * val % m; // val 은 val * val 의 m 으로나눈 나머지 
+//     if( b % 2 == 0 ) return val; // b 가 2라면 val 그대로 return 
+//     return val * a % m; // 아니라면 val에 a 한번더 곱해서 나눠서 리턴 
+// }
+
+int n , m; // 입력값
+int arr[10]; // 수열을 담을 배열
+bool isused[10]; // 특정수가 쓰였는지 true 혹은 false 로 나타내는 배열
+// 만약에 n 이 6일때  m 이 4 라면 
+// ex ) 현재 상태가 4 ,2 가 채워진 상태라면 arr[0]은 4 , arr [1] 은 2 
+//  isused[4] 와 isused[2] 는 true고 나머지는 false 상태가된다 
+
+void Backtracking(int k)
 {
-    int val = 1;
-    while(b--) val *= a;
-
-    cout << val << '\n';
-    return val % m;
+    if(k==m)
+    {
+        for(int i = 0 ; i < m; i ++)
+        {
+            cout << arr[i] << ' ';
+        }
+        cout << '\n';
+        return;
+    }
+    for(int i = 1 ; i <= n ; i++)
+    {
+        if(!isused[i])
+        {
+            arr[k] = i;
+            isused[i] = 1;
+            Backtracking(k+1);
+            isused[i] = 0;
+        }
+    }
 }
-
-using ll = long long;
-int func2(int a , int b , int m)
-{
-    ll val = 1;
-    while(b--) val*= a;
-    return val % m ;
-}
-
-ll POW(ll a , ll b , ll m) // 귀납적으로 사고해야 이런 올바른 답이 가능 
-{
-    if(b==1) return a % m; // b 가 1이라면 그냥 a / m 하면되는 예외처리 
-    ll val = POW(a , b/2 , m); // val 은 a 의 b /2 제곱 한거에 m 나눈거 
-    val = val * val % m; // val 은 val * val 의 m 으로나눈 나머지 
-    if( b % 2 == 0 ) return val; // b 가 2라면 val 그대로 return 
-    return val * a % m; // 아니라면 val에 a 한번더 곱해서 나눠서 리턴 
-}
-
 
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
 
-        vector<string> b = {"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."};
+
+        //boj 15649 백트래킹
+        //1부터 n 까지 의 숫자중에 중복없이 고른 m개를 고른 수열
+
+        cin >> n >> m;
+
+        Backtracking(0);
 
         //cout << solution(b) << '\n';
 
 
-        int A , B , C;
-        cin >> A >> B >> C;
-        cout << POW(A,B,C);
-        //내가만약 A의 2승을 구할수있다면 A 의 11승은 A^2 을 5번곱한후 A를 곱해주면된다 
-        int APrime = A * A;
-        int temp = B % 2 != 0 ? B / 2 + 1 : B / 2 ;
-        cout << temp << '\n';
-        ll val = 1;
-        val = APrime * temp;
-        cout << val / C << '\n';
+        // int A , B , C;
+        // cin >> A >> B >> C;
+        // cout << POW(A,B,C);
+        // //내가만약 A의 2승을 구할수있다면 A 의 11승은 A^2 을 5번곱한후 A를 곱해주면된다 
+        // int APrime = A * A;
+        // int temp = B % 2 != 0 ? B / 2 + 1 : B / 2 ;
+        // cout << temp << '\n';
+        // ll val = 1;
+        // val = APrime * temp;
+        // cout << val / C << '\n';
 
 
 
