@@ -1329,11 +1329,63 @@ int dy[4] = {0 , 1 , 0 , -1};
 //     }
 // }
 
+
+//BOJ 15650 N과 M (2)
+// int n, m;
+// int arr[10];
+// bool isused[10] = {false,};
+// void Backtracking(int num ,int k) //for문의 i 값을 함수의 인자로 넘겨줘서 이미 찾은 조합을 다시 안찾게 만듬 
+// {
+//     if(k==m)
+//     {
+//         for(int i = 0 ; i < m; i ++)
+//         {
+//             cout << arr[i] << ' ';
+//         }
+//         cout << '\n';
+//         return;
+//     }
+//     for(int i = num ; i <= n ; i++)
+//     {
+//         if(!isused[i])
+//         {
+//             arr[k] = i;
+//             isused[i] = true;
+//             Backtracking(i + 1 , k+1);
+//             isused[i] = false;
+//         }
+//     }
+// }
+
+// //BOJ 15651 N과 M (3)
+// int n, m;
+// int arr[10];
+// bool isused[10] = {false,};
+// void Backtracking(int k) 
+// {
+//     if(k==m)
+//     {
+//         for(int i = 0 ; i < m; i ++)
+//         {
+//             cout << arr[i] << ' ';
+//         }
+//         cout << '\n';
+//         return;
+//     }
+//     for(int i = 1 ; i <= n ; i++)
+//     {
+//         arr[k] = i;
+//         //isused[i] = true; // 중복 체크를 안해서 모든 경우의수 탐색 
+//         Backtracking(k+1);
+//         //isused[i] = false;
+//     }
+// }
+
+//BOJ 15652 n과m 3
 int n, m;
 int arr[10];
 bool isused[10] = {false,};
-
-void Backtracking(int num ,int k)
+void Backtracking(int k) 
 {
     if(k==m)
     {
@@ -1344,17 +1396,17 @@ void Backtracking(int num ,int k)
         cout << '\n';
         return;
     }
-    for(int i = num ; i <= n ; i++)
+    for(int i = 1 ; i <= n ; i++)
     {
-        if(!isused[i])
-        {
-            arr[k] = i;
-            isused[i] = true;
-            Backtracking(i + 1 , k+1);
-            isused[i] = false;
-        }
+        arr[k] = i;
+        //isused[i] = true; // 중복 체크를 안해서 모든 경우의수 탐색 
+        Backtracking(k+1);
+        //isused[i] = false;
     }
 }
+
+
+
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
@@ -1365,7 +1417,7 @@ int main()
 
         cin >> n >> m;
 
-        Backtracking(1, 0);
+        Backtracking( 0);
 
         //cout << solution(b) << '\n';
 
