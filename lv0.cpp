@@ -1299,14 +1299,41 @@ int dy[4] = {0 , 1 , 0 , -1};
 //     return val * a % m; // 아니라면 val에 a 한번더 곱해서 나눠서 리턴 
 // }
 
-int n , m; // 입력값
-int arr[10]; // 수열을 담을 배열
-bool isused[10]; // 특정수가 쓰였는지 true 혹은 false 로 나타내는 배열
-// 만약에 n 이 6일때  m 이 4 라면 
-// ex ) 현재 상태가 4 ,2 가 채워진 상태라면 arr[0]은 4 , arr [1] 은 2 
-//  isused[4] 와 isused[2] 는 true고 나머지는 false 상태가된다 
+//BOJ 15649 N 과 M 
+// int n , m; // 입력값
+// int arr[10]; // 수열을 담을 배열
+// bool isused[10]; // 특정수가 쓰였는지 true 혹은 false 로 나타내는 배열
+// // 만약에 n 이 6일때  m 이 4 라면 
+// // ex ) 현재 상태가 4 ,2 가 채워진 상태라면 arr[0]은 4 , arr [1] 은 2 
+// //  isused[4] 와 isused[2] 는 true고 나머지는 false 상태가된다 
+// void Backtracking(int k)
+// {
+//     if(k==m)
+//     {
+//         for(int i = 0 ; i < m; i ++)
+//         {
+//             cout << arr[i] << ' ';
+//         }
+//         cout << '\n';
+//         return;
+//     }
+//     for(int i = 1 ; i <= n ; i++)
+//     {
+//         if(!isused[i])
+//         {
+//             arr[k] = i;
+//             isused[i] = 1;
+//             Backtracking(k+1);
+//             isused[i] = 0;
+//         }
+//     }
+// }
 
-void Backtracking(int k)
+int n, m;
+int arr[10];
+bool isused[10] = {false,};
+
+void Backtracking(int num ,int k)
 {
     if(k==m)
     {
@@ -1317,18 +1344,17 @@ void Backtracking(int k)
         cout << '\n';
         return;
     }
-    for(int i = 1 ; i <= n ; i++)
+    for(int i = num ; i <= n ; i++)
     {
         if(!isused[i])
         {
             arr[k] = i;
-            isused[i] = 1;
-            Backtracking(k+1);
-            isused[i] = 0;
+            isused[i] = true;
+            Backtracking(i + 1 , k+1);
+            isused[i] = false;
         }
     }
 }
-
 int main()
 {
          ios::sync_with_stdio(0),cin.tie(0);// 입출력 시간 줄이는 코드 
@@ -1339,7 +1365,7 @@ int main()
 
         cin >> n >> m;
 
-        Backtracking(0);
+        Backtracking(1, 0);
 
         //cout << solution(b) << '\n';
 
