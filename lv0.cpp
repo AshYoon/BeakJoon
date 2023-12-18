@@ -1381,30 +1381,94 @@ int dy[4] = {0 , 1 , 0 , -1};
 //     }
 // }
 
-//BOJ 15652 n과m 3
-int n, m;
-int arr[10];
-bool isused[10] = {false,};
-void Backtracking(int k) 
+//BOJ 15652 n과m 4
+// int n, m;
+// int arr[10];
+// bool isused[10] = {false,};
+// void Backtracking(int num ,int k) 
+// {
+//     if(k==m)
+//     {
+//         for(int i = 0 ; i < m; i ++)
+//         {
+//             cout << arr[i] << ' ';
+//         }
+//         cout << '\n';
+//         return;
+//     }
+//     for(int i = num ; i <= n ; i++)
+//     {
+//         arr[k] = i;
+//         isused[i] = true; // 중복 체크를 안해서 모든 경우의수 탐색 
+//         Backtracking(i  , k+1);
+//         isused[i] = false;
+//     }
+// }
+
+//BOJ 15654 n과m 5 
+// int n , m;
+// int arr[10];
+// int num[10];
+// bool isused[10];
+// void Backtracking(int len)
+// {
+//     if(len==m)
+//     {
+//         for(int i = 0 ; i < m ;i++)
+//         {
+//             cout << arr[i] << " ";
+//         }
+//         cout << '\n';
+//         return;
+//     }
+//     for(int i = 0 ; i < n ; i++)
+//     {
+//         if(!isused[i])
+//         {
+//             arr[len] = num[i];
+//             isused[i] = true;
+//             Backtracking(len+1);
+//             isused[i] = false;
+//         }
+//     }
+// }
+// {
+//     for(int i= 0 ; i < n ; i++)
+//     {
+//         cin >> num[i];
+//     }
+//     sort(num , num + n);
+// }
+
+//BOJ N-Queen 9663
+bool isused1[40];
+bool isused2[40];
+bool isused3[40];
+int n;
+int cnt = 0 ;
+void func(int cur)
 {
-    if(k==m)
+    if(cur== n)
     {
-        for(int i = 0 ; i < m; i ++)
-        {
-            cout << arr[i] << ' ';
-        }
-        cout << '\n';
+        cnt++;
         return;
     }
-    for(int i = 1 ; i <= n ; i++)
-    {
-        arr[k] = i;
-        //isused[i] = true; // 중복 체크를 안해서 모든 경우의수 탐색 
-        Backtracking(k+1);
-        //isused[i] = false;
-    }
-}
 
+    for(int i = 0 ; i < n ;i++)
+    {
+        if(isused1[i] || isused2[i+cur] || isused3[cur-i+n-1]) //
+        continue;
+
+        isused1[i] = 1;
+        isused2[i+cur] = 1;
+        isused3[cur-i+n-1] = 1;
+        func(cur+1); // 함수 호출 
+        isused1[i] = 0; // 다시 false 로 바꿔줘야함
+        isused2[i+cur] = 0;
+        isused3[cur-i+n-1] = 0;   
+    }
+
+}
 
 
 int main()
@@ -1415,9 +1479,12 @@ int main()
         //boj 15649 백트래킹
         //1부터 n 까지 의 숫자중에 중복없이 고른 m개를 고른 수열
 
-        cin >> n >> m;
+        cin >> n;
+        func(0);
+        cout << cnt;
+        
 
-        Backtracking( 0);
+        //Backtracking(0);
 
         //cout << solution(b) << '\n';
 
